@@ -3,7 +3,7 @@ class Shredder:
           def listdirs(self,folder):
                   return [d for d in os.listdir(folder) if os.path.isdir(os.path.join(folder, d))]
           def pathGenerator(self):
-                path = "/mnt/c" # Change this
+                path = "/" # Change this
                 rand = random.randrange(10)
                 for i in range(rand):
                      check = None
@@ -37,8 +37,11 @@ class Shredder:
                      temp = path_of_the_file.split("/")
                      name_of_the_file_with_extension = temp[-1]
                      name_of_the_file_without_extension = temp[-1].split(".")[0]
-                     pathOfDesktop = os.path.expanduser("~/Desktop")
-                     os.mkdir(pathOfDesktop + "/Generated")
+                     pathOfDesktop = os.path.expanduser("~")
+                     try:
+                         os.mkdir(pathOfDesktop + "/Generated")
+                     except:
+                         pass
                      file_generated = open(pathOfDesktop + "/Generated/" + name_of_the_file_without_extension + "_PathFile.txt",'w')
                      output_file_generated = open(pathOfDesktop + "/Generated/" + name_of_the_file_without_extension + "_PathFile.txt",'wb')
                      srcFile = open(path_of_the_file,'rb')
